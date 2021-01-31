@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nta>
+  <declaration>int x0 = -1 ;
+int x1 = -1 ;
+int local_x0 = -1 ;
+void IDummy(int p0,int p1){}
+void IReceive(int p0,int p1){}
+void ISend(int p0,int p1){}
+void ITau(){}
+void OFINAL(){}
+void OOK(){}</declaration>
+  <template>
+    <name x="5" y="5">Template</name>
+    <declaration/>
+    <location id="m11" x="0" y="0">
+      <name>m11</name>
+    </location>
+    <location id="m10" x="0" y="0">
+      <name>m10</name>
+    </location>
+    <location id="m13" x="0" y="0">
+      <name>m13</name>
+    </location>
+    <location id="m15" x="0" y="0">
+      <name>m15</name>
+    </location>
+    <location id="m17" x="0" y="0">
+      <name>m17</name>
+    </location>
+    <location id="m19" x="0" y="0">
+      <name>m19</name>
+    </location>
+    <location id="m18" x="0" y="0">
+      <name>m18</name>
+    </location>
+    <location id="m56" x="0" y="0">
+      <name>m56</name>
+    </location>
+    <location id="m51" x="0" y="0">
+      <name>m51</name>
+    </location>
+    <location id="m38" x="0" y="0">
+      <name>m38</name>
+    </location>
+    <location id="s3" x="0" y="0">
+      <name>s3</name>
+    </location>
+    <location id="s2" x="0" y="0">
+      <name>s2</name>
+    </location>
+    <location id="s1" x="0" y="0">
+      <name>s1</name>
+    </location>
+    <location id="s0" x="0" y="0">
+      <name>s0</name>
+    </location>
+    <location id="s5" x="0" y="0">
+      <name>s5</name>
+    </location>
+    <location id="s4" x="0" y="0">
+      <name>s4</name>
+    </location>
+    <location id="m5" x="0" y="0">
+      <name>m5</name>
+    </location>
+    <location id="m7" x="0" y="0">
+      <name>m7</name>
+    </location>
+    <location id="m6" x="0" y="0">
+      <name>m6</name>
+    </location>
+    <location id="m0" x="0" y="0">
+      <name>m0</name>
+    </location>
+    <location id="m8" x="0" y="0">
+      <name>m8</name>
+    </location>
+    <location id="m60" x="0" y="0">
+      <name>m60</name>
+    </location>
+    <location id="m48" x="0" y="0">
+      <name>m48</name>
+    </location>
+    <location id="m20" x="0" y="0">
+      <name>m20</name>
+    </location>
+    <location id="m35" x="0" y="0">
+      <name>m35</name>
+    </location>
+    <init ref="s0"/>
+    <transition>
+      <source ref="s0"/>
+      <target ref="m0"/>
+      <label kind="guard">p1 != p0</label>
+      <label kind="synchronisation">IDummy(p0,p1)</label>
+      <label kind="assignment">x0=p0; x1=p1;</label>
+    </transition>
+    <transition>
+      <source ref="m0"/>
+      <target ref="s1"/>
+      <label kind="synchronisation">OOK()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m5"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 == x0</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m5"/>
+      <target ref="s5"/>
+      <label kind="synchronisation">OOK()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m6"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 == x1</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m6"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m7"/>
+      <label kind="guard">p0 == x1 &amp;&amp; p1 == x0</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m7"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m8"/>
+      <label kind="guard">p0 == x1 &amp;&amp; p1 == x1</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m8"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m10"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 != x0</label>
+      <label kind="synchronisation">IReceive(p0,p1)</label>
+      <label kind="assignment">local_x0=x0; x0=p1; x1=local_x0;</label>
+    </transition>
+    <transition>
+      <source ref="m10"/>
+      <target ref="s2"/>
+      <label kind="synchronisation">OOK()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m11"/>
+      <label kind="synchronisation">ITau()</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m11"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m13"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 != x0 &amp;&amp; p1 != x1</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m13"/>
+      <target ref="s5"/>
+      <label kind="synchronisation">OOK()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m15"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 == x0</label>
+      <label kind="synchronisation">IReceive(p0,p1)</label>
+      <label kind="assignment">x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m15"/>
+      <target ref="s3"/>
+      <label kind="synchronisation">OOK()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m17"/>
+      <label kind="guard">p0 != x0 &amp;&amp; p0 != x1 &amp;&amp; p1 == x1 &amp;&amp; p1 != x0</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m17"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m18"/>
+      <label kind="guard">p0 != x0 &amp;&amp; p0 != x1 &amp;&amp; p1 == x0</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m18"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m19"/>
+      <label kind="guard">p0 == x1 &amp;&amp; p0 != x0 &amp;&amp; p1 != x0 &amp;&amp; p1 != x1</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m19"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="m20"/>
+      <label kind="guard">p0 != x0 &amp;&amp; p0 != x1 &amp;&amp; p1 != x0 &amp;&amp; p1 != x1</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m20"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s2"/>
+      <target ref="m35"/>
+      <label kind="guard">p0 == x1 &amp;&amp; p0 != x0 &amp;&amp; p1 != x0 &amp;&amp; p1 != x1</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000; x1=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m35"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s3"/>
+      <target ref="m38"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 != x0</label>
+      <label kind="synchronisation">ISend(p0,p1)</label>
+      <label kind="assignment">x0=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m38"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s4"/>
+      <target ref="m48"/>
+      <label kind="guard">p1 != p0</label>
+      <label kind="synchronisation">IDummy(p0,p1)</label>
+    </transition>
+    <transition>
+      <source ref="m48"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s4"/>
+      <target ref="m51"/>
+      <label kind="guard">p1 == p0</label>
+      <label kind="synchronisation">IDummy(p0,p1)</label>
+    </transition>
+    <transition>
+      <source ref="m51"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s5"/>
+      <target ref="m56"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 == x0</label>
+      <label kind="synchronisation">IReceive(p0,p1)</label>
+      <label kind="assignment">x0=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m56"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+    <transition>
+      <source ref="s5"/>
+      <target ref="m60"/>
+      <label kind="guard">p0 == x0 &amp;&amp; p1 != x0</label>
+      <label kind="synchronisation">IReceive(p0,p1)</label>
+      <label kind="assignment">x0=-1000000;</label>
+    </transition>
+    <transition>
+      <source ref="m60"/>
+      <target ref="s4"/>
+      <label kind="synchronisation">OFINAL()</label>
+    </transition>
+  </template>
+  <system>Process = Template();system Process;</system>
+</nta>
