@@ -1,8 +1,20 @@
 const fs = require("fs");
+const path = require("path");
 const xml2js = require("xml2js");
 const builder = new xml2js.Builder();
 
-fs.readFile("learnedConcreteModel.xml", "utf-8", (err, data) => {
+const inputModelName = process.argv[2];
+const outputModelName = process.argv[3];
+
+if (!inputModelName || !outputModelName) {
+  console.log("Provide a path to the model and an output model name");
+  console.log("$ removoq input.model.xml output.model.xml");
+  process.exit(1);
+}
+
+const inputModelPath = path.resolve(__dirname, inputModelName);
+
+fs.readFile(inputModelPath, "utf-8", (err, data) => {
   if (err) console.log(err);
 
   xml2js.parseString(data, (err, json) => {
@@ -30,12 +42,12 @@ fs.readFile("learnedConcreteModel.xml", "utf-8", (err, data) => {
     json.nta.template[0].transition = transitions.filter((tran) => tran);
     json.nta.template[0].location = locations;
 
-    // // console.log(JSON.stringify(transitions, null, 2));
-
     const xml = builder.buildObject(json);
-    fs.writeFile("new_learnedConcreteModel.xml", xml, (err, data) => {
+    const outputModelPath = path.resolve(__dirname, outputModelName);
+
+    fs.writeFile(outputModelPath, xml, (err, data) => {
       if (err) console.log(err);
-      console.log("successfully written our update xml to file");
+      console.log("Wrote new model: " + outputModelName);
     });
   });
 });

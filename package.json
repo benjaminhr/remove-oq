@@ -1,14 +1,17 @@
 {
-  "name": "remove-oq",
+  "name": "removoq",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
+  "bin": "main.js",
   "dependencies": {
     "xml2js": "^0.4.23"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "pkg": "^4.4.9"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "package": "pkg . --out-path dist"
   },
   "keywords": [],
   "author": "",
