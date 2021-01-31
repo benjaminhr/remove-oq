@@ -12,7 +12,7 @@ if (!inputModelName || !outputModelName) {
   process.exit(1);
 }
 
-const inputModelPath = path.resolve(__dirname, inputModelName);
+const inputModelPath = path.resolve(process.cwd(), inputModelName);
 
 fs.readFile(inputModelPath, "utf-8", (err, data) => {
   if (err) console.log(err);
@@ -43,7 +43,7 @@ fs.readFile(inputModelPath, "utf-8", (err, data) => {
     json.nta.template[0].location = locations;
 
     const xml = builder.buildObject(json);
-    const outputModelPath = path.resolve(__dirname, outputModelName);
+    const outputModelPath = path.resolve(process.cwd(), outputModelName);
 
     fs.writeFile(outputModelPath, xml, (err, data) => {
       if (err) console.log(err);
